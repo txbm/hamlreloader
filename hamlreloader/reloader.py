@@ -3,7 +3,8 @@ import logging
 from time import sleep
 
 from os import makedirs
-from os.path import splitext, abspath, dirname, basename, join, relpath, exists
+from os.path import (splitext, abspath, dirname, 
+	basename, join, relpath, exists)
 
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
@@ -34,7 +35,6 @@ def watch_directory(watch_dir, target_dir):
 		obs.stop()
 	obs.join()
 
-
 def render_haml(haml_file, dest_file):
 	cmd = r'haml %s %s' % (haml_file, dest_file)
 	call(cmd, shell=True)
@@ -52,6 +52,7 @@ class ModifiedHandler(FileSystemEventHandler):
 			return
 		
 		logger.info('Detected change in: %s' % e.src_path)
+		print 'happening'
 
 		subpath = dirname(relpath(e.src_path, self.watch_path))
 		write_dir = join(self.target_path, subpath)
