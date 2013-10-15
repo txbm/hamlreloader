@@ -4,6 +4,7 @@ python:
 before_script:
     - sudo rm -rf /dev/shm && sudo ln -s /run/shm /dev/shm
 install:
+    - gem install haml
     - pip install -e .[test]
 script:
     nosetests --with-coverage --cover-package=hamlreloader

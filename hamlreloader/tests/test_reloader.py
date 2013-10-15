@@ -46,7 +46,9 @@ def test_watch_directory():
 		sleep(1)
 
 		for f in listdir(watch_directory):
-			unlink(join(watch_directory, f))
+			if f != '.nothing':
+				unlink(join(watch_directory, f))
 
 		for f in listdir(render_directory):
-			unlink(join(render_directory, f))
+			if f != '.nothing':
+				unlink(join(render_directory, f))
