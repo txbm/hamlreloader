@@ -2,7 +2,8 @@ language: python
 python:
     - 2.7
 install:
-    pip install -e .[test]
+    - "pip install -e .[test]"
+    - "sudo rm -rf /dev/shm && sudo ln -s /run/shm /dev/shm"
 script:
     nosetests --with-coverage --cover-package=hamlreloader
 after_script:
