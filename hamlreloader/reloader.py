@@ -16,7 +16,10 @@ logger = logging.getLogger('hamlreloader')
 def parse_file_ext(p):
 	return splitext(p)[-1].lower()
 
-def watch_directory(watch_dir, target_dir):	
+def watch_directory(watch_dir, target_dir, condition=None):
+	if condition:
+		condition.acquire()
+	
 	watch_path = abspath(watch_dir)
 	logger.info('Watch path: %s' % watch_path)
 	
@@ -28,6 +31,10 @@ def watch_directory(watch_dir, target_dir):
 
 	obs.schedule(handler, watch_path, recursive=True)
 	obs.start()
+	
+	if condition:
+		condition.notify()
+		condition.release()
 	try:
 		while True:
 			sleep(1)
@@ -52,7 +59,6 @@ class ModifiedHandler(FileSystemEventHandler):
 			return
 		
 		logger.info('Detected change in: %s' % e.src_path)
-		print 'happening'
 
 		subpath = dirname(relpath(e.src_path, self.watch_path))
 		write_dir = join(self.target_path, subpath)
