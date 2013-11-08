@@ -16,7 +16,11 @@ from os.path import (
     exists
 )
 
-from watchdog.events import FileSystemEventHandler
+from watchdog.events import (
+    FileSystemEventHandler,
+    FileMovedEvent
+)
+
 from watchdog.observers import Observer
 
 from subprocess import call
@@ -68,20 +72,25 @@ class ModifiedHandler(FileSystemEventHandler):
         super(ModifiedHandler, self).__init__()
 
     def on_any_event(self, e):
-        ext = parse_file_ext(e.src_path)
-        if not ext == '.haml':
+        if isinstance(e, FileMovedEvent):
+            path = e.dest_path
+        else:
+            path = e.src_path
+
+        ext = parse_file_ext(path)
+        if ext != '.haml':
             return
 
-        logger.info('Detected change in: %s' % e.src_path)
+        logger.info('Detected change in: %s' % path)
 
-        subpath = dirname(relpath(e.src_path, self.watch_path))
+        subpath = dirname(relpath(path, self.watch_path))
         write_dir = join(self.target_path, subpath)
 
         if not exists(write_dir):
             makedirs(write_dir)
 
         write_path = join(write_dir, '%s.html' %
-                          splitext(basename(e.src_path))[0])
+                          splitext(basename(path))[0])
 
         logger.info('Writing to: %s' % write_path)
-        render_haml(e.src_path, write_path)
+        render_haml(path, write_path)

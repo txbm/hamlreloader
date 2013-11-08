@@ -8,7 +8,7 @@ from setuptools import (
 
 setup(
     name="hamlreloader",
-    version="0.0.2",
+    version="0.0.3",
     url='http://github.com/petermelias/hamlreloader',
         license='MIT',
         author='Peter M. Elias',

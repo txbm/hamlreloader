@@ -1,5 +1,8 @@
 # Changelog
-current Version: v0.0.2
+current Version: v0.0.3
+
+### v0.0.3
+* Adjusted watcher code so that it detects temporary-file swap saving techniques.
 
 ### v0.0.2
 * Cleaned up files, maybe fixed a bug
