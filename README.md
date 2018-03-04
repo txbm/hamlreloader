@@ -1,5 +1,5 @@
 # HamlReloader
-[![Build Status](https://travis-ci.org/petermelias/hamlreloader.png?branch=master)](https://travis-ci.org/petermelias/hamlreloader) [![Coverage Status](https://coveralls.io/repos/petermelias/hamlreloader/badge.png?branch=master)](https://coveralls.io/r/petermelias/hamlreloader?branch=master) [![Downloads](https://pypip.in/d/hamlreloader/badge.png)](https://crate.io/packages/hamlreloader) [![Downloads](https://pypip.in/v/hamlreloader/badge.png)](https://crate.io/packages/hamlreloader)
+[![Build Status](https://travis-ci.org/petermelias/hamlreloader.png?branch=master)](https://travis-ci.org/petermelias/hamlreloader) [![Coverage Status](https://coveralls.io/repos/petermelias/hamlreloader/badge.png?branch=master)](https://coveralls.io/r/petermelias/hamlreloader?branch=master) [![Downloads](https://img.shields.io/pypi/dm/hamlreloader.svg)](https://crate.io/packages/hamlreloader) [![Downloads](https://img.shields.io/pypi/v/hamlreloader.svg)](https://crate.io/packages/hamlreloader)
 
 ## Usage
 
